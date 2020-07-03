@@ -1,18 +1,35 @@
 <template>
   <div id="app">
-    <router-view></router-view>
-
+    <nav-bar/>
+    <transition name="fade" mode="in-out">
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 
 <script>
+  import NavBar from "components/content/NavBar";
 
 export default {
   name: 'App',
   components: {
+    NavBar
   }
 }
 </script>
 
 <style>
+  .fade-enter {
+    opacity:0;
+  }
+  .fade-leave{
+    opacity:1;
+  }
+  .fade-enter-active{
+    transition:opacity .5s;
+  }
+  .fade-leave-active{
+    opacity:0;
+    transition:opacity .5s;
+  }
 </style>

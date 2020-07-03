@@ -11,8 +11,8 @@
 
 <style scoped>
   .index{
-    background-color: #409EFF;
+    background-color: #eeeede;
     width: 100%;
-    height: 10000px
+    height: 100000px
   }
 </style>
