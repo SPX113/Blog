@@ -1,18 +1,19 @@
 <template>
   <div class="index">
+    <swiper/>
   </div>
 </template>
 
 <script>
+  import Swiper from "./childComps/Swiper";
   export default {
-    name: "index"
+    name: "index",
+    components:{
+      Swiper
+    }
   }
 </script>
 
 <style scoped>
-  .index{
-    background-color: #eeeede;
-    width: 100%;
-    height: 100000px
-  }
+
 </style>

@@ -2,6 +2,11 @@
     margin: 0;
     padding: 0;
 }
+html,body,#app{
+    height: 100%;
+    background-color: rgb(238,237,237);
+    width: 100%;
+}
 @media screen and (min-width: 800px) {
     /* 滚动条 */
 ::-webkit-scrollbar {

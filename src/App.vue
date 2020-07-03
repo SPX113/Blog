@@ -2,7 +2,9 @@
   <div id="app">
     <nav-bar/>
     <transition name="fade" mode="in-out">
-      <router-view></router-view>
+      <keep-alive>
+        <router-view/>
+      </keep-alive>
     </transition>
   </div>
 </template>

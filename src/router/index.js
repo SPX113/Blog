@@ -21,23 +21,38 @@ const routes=[
   },
   {
     path : '/index',
-    component: Index
+    component: Index,
+    meta:{
+      title : '主页'
+    }
   },
   {
     path: '/label',
-    component : Label
+    component : Label,
+    meta:{
+      title : '标签'
+    }
   },
   {
     path: '/timeline',
-    component : TimeLine
+    component : TimeLine,
+    meta:{
+      title : '时间线'
+    }
   },
   {
     path: '/message',
-    component : Message
+    component : Message,
+    meta:{
+      title : '留言板'
+    }
   },
   {
     path: '/about',
-    component : About
+    component : About,
+    meta:{
+      title : '关于'
+    }
   }
 
 ]
@@ -47,14 +62,23 @@ const router = new VueRouter({
   mode : 'history'
 })
 
+
+//全局守卫
 //切换路由淡入淡出效果
 router.beforeEach((to, from, next) => {
   NProgress.start()  //开启
   next()
+
+  //标题变化
+  document.title = to.meta.title + ' | SPX-Blog'
+
 })
 router.afterEach(() => {
   NProgress.done()  //关闭
 })
+
+
+
 
 
 export default router
