@@ -3,9 +3,13 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-const Index = () => import('views/index/Index.vue')
+const Index = () => import('views/index')
 
 const routes=[
+  {
+    path: '',
+    redirect : '/index'
+  },
   {
     path : '/index',
     component: Index
