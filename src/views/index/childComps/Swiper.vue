@@ -1,17 +1,17 @@
 <template>
   <div class="swiper">
     <el-carousel height="380px" indicator-position="none">
-      <el-carousel-item >
+      <el-carousel-item v-for="(item,index) in newArticle" :key="index">
         <div class="content">
-          <el-image :src="require('@/assets/img/head.jpg')" fit="cover" class="image"></el-image>
+          <el-image :src="item.photo" fit="cover" class="image"></el-image>
           <div class="info">
             <div class="blog-info">
-              <div class="title">正在搭建一个Blog的页面,yayayyaya</div>
+              <div class="title">{{item.title}}</div>
               <div class="tag">
                 <el-tag type="info">标签三</el-tag>
               </div>
               <div class="time">
-                time
+                {{item.updatetime | updatetime}}
               </div>
             </div>
           </div>
@@ -23,7 +23,20 @@
 
 <script>
   export default {
-    name: "Swiper"
+    name: "Swiper",
+    props:{
+      newArticle:{
+        type : Array,
+        default(){
+          return []
+        }
+      }
+    },
+    filters:{
+      updatetime(data){
+        return data.substr(0,10)
+      }
+    }
   }
 </script>
 
@@ -67,5 +80,11 @@
     font-size: 35px;
     font-weight: bold;
     margin-bottom: 10px;
+  }
+  .tag{
+    margin-top: 20px;
+  }
+  .time{
+    margin-top: 10px;
   }
 </style>
