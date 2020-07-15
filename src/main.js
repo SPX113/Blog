@@ -4,6 +4,16 @@ import router from './router'
 
 import  'assets/css/index.css'
 
+import hljs from 'highlight.js' //导入代码高亮文件
+import 'highlight.js/styles/monokai-sublime.css'  //导入代码高亮样式
+
+Vue.directive('highlight',function (el) {
+  let highlight = el.querySelectorAll('pre code');
+  highlight.forEach((block)=>{
+    hljs.highlightBlock(block)
+  })
+})
+
 //icon库导入
 import 'assets/css/icon/iconfont.css'
 

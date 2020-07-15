@@ -13,6 +13,7 @@ const Label = () => import('views/label/Label')
 const TimeLine = () => import('views/timeline/TimeLine')
 const Message = () => import('views/message/Message')
 const About = () => import('views/about/About')
+const Detail = () => import('views/detail/Detail')
 
 const routes=[
   {
@@ -53,6 +54,10 @@ const routes=[
     meta:{
       title : '关于'
     }
+  },
+  {
+    path: '/detail/:name',
+    component : Detail,
   }
 
 ]

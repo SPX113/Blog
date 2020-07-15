@@ -1,9 +1,9 @@
 import {request} from './request'
 
-export function getArticle() {
+export function recommedArticle() {
   return request({
-    url : '/article'
+    url : '/recommedArticle'
   })
-
 }
+
 

@@ -1,26 +1,29 @@
 <template>
   <div class="index">
-    <swiper :newArticle = "newArticle"/>
+    <swiper :recArticle = "recArticle"/>
+    <article-list/>
   </div>
 </template>
 
 <script>
-  import {getArticle} from "network/home";
   import Swiper from "./childComps/Swiper";
+  import ArticleList from "./childComps/ArticleList";
+
+  import {recommedArticle} from "../../network/home";
   export default {
     name: "index",
     components:{
-      Swiper
+      Swiper,ArticleList
     },
     data(){
       return {
-        newArticle : []
+        recArticle : []
       }
     },
     created() {
-      getArticle().then(res => {
-        this.newArticle = res.data
-        console.log(this.newArticle)
+      recommedArticle().then(res => {
+        this.recArticle = res.data
+        console.log(this.recArticle)
       })
     }
   }

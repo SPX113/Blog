@@ -1,9 +1,9 @@
 <template>
   <div class="swiper">
     <el-carousel height="380px" indicator-position="none">
-      <el-carousel-item v-for="(item,index) in newArticle" :key="index">
+      <el-carousel-item v-for="(item,index) in recArticle" :key="index" @click.native="itemClick(item.article)">
         <div class="content">
-          <el-image :src="item.photo" fit="cover" class="image"></el-image>
+          <el-image :src="item.photo" fit="fill" class="image"></el-image>
           <div class="info">
             <div class="blog-info">
               <div class="title">{{item.title}}</div>
@@ -25,7 +25,7 @@
   export default {
     name: "Swiper",
     props:{
-      newArticle:{
+      recArticle:{
         type : Array,
         default(){
           return []
@@ -35,6 +35,11 @@
     filters:{
       updatetime(data){
         return data.substr(0,10)
+      }
+    },
+    methods:{
+      itemClick(path){
+        this.$router.push('/detail/' + path)
       }
     }
   }
@@ -77,6 +82,7 @@
     bottom: -15%;
   }
   .title{
+    padding-top: 20px;
     font-size: 35px;
     font-weight: bold;
     margin-bottom: 10px;
