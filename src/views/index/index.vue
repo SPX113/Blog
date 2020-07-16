@@ -23,7 +23,9 @@
     created() {
       recommedArticle().then(res => {
         this.recArticle = res.data
-        console.log(this.recArticle)
+        for(let i of this.recArticle){
+            i.tags = i.tags.split(',')
+        }
       })
     }
   }

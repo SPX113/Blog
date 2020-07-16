@@ -1,8 +1,16 @@
 import {request} from './request'
 
-export function getDetail(name) {
+export function getDetail(id) {
   return request({
-    url : '/mdsrc/'+ name + '.md'
+    url : '/article',
+    params : {
+      id
+    }
   })
+}
 
+export function getArticle(article) {
+  return request({
+    url : '/mdsrc/' + article + '.md'
+  })
 }

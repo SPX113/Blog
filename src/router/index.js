@@ -56,7 +56,7 @@ const routes=[
     }
   },
   {
-    path: '/detail/:name',
+    path: '/detail/:id',
     component : Detail,
   }
 

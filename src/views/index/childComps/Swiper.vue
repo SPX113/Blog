@@ -1,14 +1,14 @@
 <template>
   <div class="swiper">
     <el-carousel height="380px" indicator-position="none">
-      <el-carousel-item v-for="(item,index) in recArticle" :key="index" @click.native="itemClick(item.article)">
+      <el-carousel-item v-for="(item,index) in recArticle" :key="index" @click.native="itemClick(item.id)">
         <div class="content">
           <el-image :src="item.photo" fit="fill" class="image"></el-image>
           <div class="info">
             <div class="blog-info">
               <div class="title">{{item.title}}</div>
-              <div class="tag">
-                <el-tag type="info">标签三</el-tag>
+              <div class="tags">
+                <el-tag type="info" v-for="(tage,index) in item.tags" :key="index">{{tage}}</el-tag>
               </div>
               <div class="time">
                 {{item.updatetime | updatetime}}
@@ -38,8 +38,8 @@
       }
     },
     methods:{
-      itemClick(path){
-        this.$router.push('/detail/' + path)
+      itemClick(id){
+        this.$router.push('/detail/' + id)
       }
     }
   }
@@ -72,6 +72,7 @@
   .info{
     height: 380px;
     flex: 1;
+    justify-content: space-between;
   }
   .blog-info{
     text-align: left;
@@ -79,7 +80,7 @@
     width: 60%;
     margin: auto;
     position: relative;
-    bottom: -15%;
+    bottom: -10%;
   }
   .title{
     padding-top: 20px;
@@ -87,10 +88,13 @@
     font-weight: bold;
     margin-bottom: 10px;
   }
-  .tag{
+  .tags{
     margin-top: 20px;
   }
   .time{
     margin-top: 10px;
+  }
+  .el-tag{
+    color: black;
   }
 </style>
