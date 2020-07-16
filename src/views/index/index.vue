@@ -1,7 +1,7 @@
 <template>
   <div class="index">
     <swiper :recArticle = "recArticle"/>
-    <article-list/>
+    <article-list :articleList="articleList" />
   </div>
 </template>
 
@@ -9,7 +9,7 @@
   import Swiper from "./childComps/Swiper";
   import ArticleList from "./childComps/ArticleList";
 
-  import {recommedArticle} from "../../network/home";
+  import {recommedArticle,getArticleByPage} from "../../network/home";
   export default {
     name: "index",
     components:{
@@ -17,7 +17,9 @@
     },
     data(){
       return {
-        recArticle : []
+        recArticle : [],
+        pageNo : 1,
+        articleList : []
       }
     },
     created() {
@@ -27,7 +29,15 @@
             i.tags = i.tags.split(',')
         }
       })
-    }
+        getArticleByPage(this.pageNo).then(res => {
+          this.articleList = res.data
+          console.log(this.articleList)
+          for(let i of this.articleList){
+            i.tags = i.tags.split(',')
+          }
+
+        })
+      }
   }
 </script>
 

@@ -27,7 +27,6 @@
       const id = this.$route.params.id
       getDetail(id).then(res => {
         this.articleInfo = res.data[0]
-        console.log(this.articleInfo)
 
 //数据处理
         //获取文章的文件名,获取文件信息
@@ -35,7 +34,7 @@
         //标签从字符串转换为数组
         this.articleInfo.tags = this.articleInfo.tags.split(',')
         //时间处理
-        this.articleInfo.updatetime = this.articleInfo.updatetime.substr(0,10)
+        this.articleInfo.createtime = this.articleInfo.createtime.substr(0,10)
       }).then(res =>{
         getArticle(this.article).then(res => {
           this.mdhtml = marked(res.data)

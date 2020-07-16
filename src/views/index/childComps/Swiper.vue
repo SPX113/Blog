@@ -11,7 +11,7 @@
                 <el-tag type="info" v-for="(tage,index) in item.tags" :key="index">{{tage}}</el-tag>
               </div>
               <div class="time">
-                {{item.updatetime | updatetime}}
+                {{ item.createtime | formatetime}}
               </div>
             </div>
           </div>
@@ -30,11 +30,6 @@
         default(){
           return []
         }
-      }
-    },
-    filters:{
-      updatetime(data){
-        return data.substr(0,10)
       }
     },
     methods:{
@@ -96,5 +91,6 @@
   }
   .el-tag{
     color: black;
+    margin-right: 10px;
   }
 </style>

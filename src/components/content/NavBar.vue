@@ -1,8 +1,8 @@
 <template>
   <div class="nav-bar">
-    <ul class="nav">
-      <li :class="{active : currentIndex === index}" v-for="(item,index) in list" :key="index" @click="select(index)">{{item}}</li>
-    </ul>
+      <ul class="nav">
+        <li :class="{active : currentIndex === index}" v-for="(item,index) in list" :key="index" @click="select(index)">{{item}}</li>
+      </ul>
   </div>
 </template>
 

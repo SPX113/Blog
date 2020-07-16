@@ -1,31 +1,45 @@
 <template>
   <div class="content">
-    <div class="list-item" v-for="(item,index) in 6" :key="index">
+    <div class="list-item" v-for="(item,index) in articleList" :key="index" @click="itemClick(item.id)">
       <div class="info">
-        <h2>flex布局中的flex-basis,flex-grow,flex-shrink到底咋回事儿?</h2>
+        <h2>{{item.title}}</h2>
         <div class="tag">
-          <el-tag type="info">标签三</el-tag>
+          <el-tag type="info" v-for="(tag,index) in item.tags" :key="index">{{tag}}</el-tag>
         </div>
-        <p>描述一下描述一下描述一下描述一下描述一下描述一下描述一下描述一下描述一下描述一下描述一下描述一下描述一下描述一下</p>
+        <p>{{item.describe}}</p>
         <div class="footer">
-          <span>2020-06-16</span>
+          <span>{{ item.createtime | formatetime }}</span>
           <ul>
-            <li><i class="el-icon-view">20</i></li>
-            <li><i class="el-icon-chat-dot-round">10</i></li>
-            <li><i class="el-icon-star-off">5</i></li>
+            <li><i class="el-icon-view"> {{item.watches}}</i></li>
+            <li><i class="el-icon-chat-dot-round"> {{item.comments}}</i></li>
+            <li><i class="el-icon-star-off"> {{item.stars}}</i></li>
           </ul>
         </div>
       </div>
       <div class="image">
-        <el-image src="http://localhost:3000/img/sanzhi.jpg" fit="fill" class="photo" style="height: 250px;border-radius: 8px"></el-image>
+        <el-image :src="item.photo" fit="fill" class="photo" style="height: 250px;border-radius: 8px"></el-image>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+
   export default {
-    name: "ArticleList"
+    name: "ArticleList",
+    props:{
+      articleList:{
+        type : Array,
+        default(){
+          return []
+        }
+      }
+    },
+    methods:{
+      itemClick(id){
+        this.$router.push('/detail/'+ id)
+      }
+    }
   }
 </script>
 
@@ -77,7 +91,10 @@
   .list-item:hover  .photo{
     transform:scale(1.04);
   }
-
+  .el-tag{
+    margin-right: 10px;
+    color: black;
+  }
 
 
 </style>

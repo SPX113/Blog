@@ -6,4 +6,13 @@ export function recommedArticle() {
   })
 }
 
+export function getArticleByPage(pageNo) {
+  return request({
+    url : '/allarticle',
+    params:{
+      pageNo
+    }
+  })
+
+}
 

@@ -10,7 +10,7 @@
       </div>
       <div class="footer">
         <i class="el-icon-edit"></i>
-        <span>{{ articleInfo.updatetime }}</span>
+        <span> {{ articleInfo.createtime }}</span>
       </div>
     </div>
   </div>
