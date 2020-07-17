@@ -8,6 +8,7 @@
               :current-page="currentPage"
               @next-click="nextpage"
               @prev-click="prevpage"
+              @current-change = "selectPage"
               :total="totalpages">
       </el-pagination>
 
@@ -59,6 +60,10 @@
       },
       nextpage(){
         this.currentPage ++
+        this.getByPage(this.currentPage)
+      },
+      selectPage(value){
+        this.currentPage = value
         this.getByPage(this.currentPage)
       }
     },
