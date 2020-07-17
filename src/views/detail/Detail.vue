@@ -2,30 +2,37 @@
   <div>
     <top :articleInfo="articleInfo"/>
     <div class="content">
-      <div v-html="mdhtml" class="markdown-body" v-highlight ></div>
+      <article-html :mdhtml = "mdhtml"/>
+      <give-star/>
+      <comments :id="id"/>
     </div>
   </div>
 </template>
 
 <script>
   import Top from "./childcomps/Top";
+  import Comments from "./childcomps/Comments";
+  import ArticleHtml from "./childcomps/ArticleHtml";
+  import GiveStar from "./childcomps/GiveStar";
+
   import { getDetail , getArticle} from 'network/detail.js'
   import marked from 'marked'
   export default {
     name: "Detail",
     components:{
-      Top
+      Top,ArticleHtml,Comments,GiveStar
     },
     data(){
       return{
         articleInfo : {},
         article : '',
-        mdhtml : ''
+        mdhtml : '',
+        id : 0
       }
     },
     created() {
-      const id = this.$route.params.id
-      getDetail(id).then(res => {
+      this.id = parseInt(this.$route.params.id)
+      getDetail(this.id).then(res => {
         this.articleInfo = res.data[0]
 
 //数据处理
@@ -40,12 +47,17 @@
           this.mdhtml = marked(res.data)
         })
       })
+    },
+    mounted(){
+      //页面回顶
+      this.$nextTick(() => {
+        document.querySelector("#app").scrollTop = 0
+      })
     }
   }
 </script>
 
 <style scoped>
-  @import "~github-markdown-css/github-markdown.css";
   .content{
     background-color: white;
     width: 75%;
@@ -54,8 +66,5 @@
     position: relative;
     bottom: 70px;
     z-index: 100;
-  }
-  .markdown-body{
-    padding: 40px 5%;
   }
 </style>

@@ -31,6 +31,9 @@
 </script>
 
 <style scoped>
+  .top{
+    position: relative;
+  }
   .el-image{
     height: 380px;
   }

@@ -14,3 +14,13 @@ export function getArticle(article) {
     url : '/mdsrc/' + article + '.md'
   })
 }
+
+export function upLoadCommnet(id,name,comment) {
+  return request({
+    url : '/uploadcomment',
+    params : {
+      id,name,comment
+    }
+  })
+
+}

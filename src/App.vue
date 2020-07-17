@@ -6,16 +6,18 @@
         <router-view/>
       </keep-alive>
     </transition>
+    <back-top/>
   </div>
 </template>
 
 <script>
   import NavBar from "components/content/NavBar";
+  import BackTop from "./components/common/backTop/BackTop";
 
 export default {
   name: 'App',
   components: {
-    NavBar
+    NavBar,BackTop
   }
 }
 </script>
@@ -33,5 +35,8 @@ export default {
   .fade-leave-active{
     opacity:0;
     transition:opacity .5s;
+  }
+  #app{
+    overflow-y: scroll;
   }
 </style>

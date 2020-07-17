@@ -17,7 +17,7 @@
         </div>
       </div>
       <div class="image">
-        <el-image :src="item.photo" fit="fill" class="photo" style="height: 250px;border-radius: 8px"></el-image>
+        <el-image :src="item.photo" fit="fill" class="photo" style="height: 250px;border-radius: 8px" lazy></el-image>
       </div>
     </div>
   </div>

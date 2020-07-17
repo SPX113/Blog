@@ -2,7 +2,7 @@
   <div class="index">
     <swiper :recArticle = "recArticle"/>
     <article-list :articleList="articleList" />
-      <el-pagination
+    <el-pagination
               background
               layout="prev, pager, next"
               :current-page="currentPage"
@@ -10,8 +10,7 @@
               @prev-click="prevpage"
               @current-change = "selectPage"
               :total="totalpages">
-      </el-pagination>
-
+    </el-pagination>
   </div>
 </template>
 
@@ -30,7 +29,8 @@
         recArticle: [],
         currentPage: 1,
         articleList: [],
-        totalpages: 0
+        totalpages: 0,
+        offset : 0
       }
     },
     methods: {
@@ -71,6 +71,12 @@
     {
       this.getrecommend()
       this.getByPage(this.currentPage)
+    },
+    activated() {
+      document.querySelector("#app").scrollTop = this.offset
+    },
+    deactivated(){
+      this.offset = document.querySelector("#app").scrollTop
     }
   }
 </script>
