@@ -4,24 +4,29 @@
     <div class="content">
       <article-html :mdhtml = "mdhtml"/>
       <give-star :id="id"/>
-      <comments @btnClick="commentSubmit"/>
+      <publishing @btnClick="commentSubmit"/>
+      <message-display/>
     </div>
   </div>
 </template>
 
 <script>
   import Top from "./childcomps/Top";
-  import Comments from "components/content/commentInput/Comments"
+  import Publishing from "components/content/publishing/Publishing"
   import ArticleHtml from "./childcomps/ArticleHtml";
   import GiveStar from "./childcomps/GiveStar";
+  import MessageDisplay from "components/content/messageDisplay/MessageDisplay";
+
+  import { notificationMixin } from "common/mixin";
 
   import { getDetail , getArticle , upLoadCommnet} from 'network/detail.js'
   import marked from 'marked'
   export default {
     name: "Detail",
     components: {
-      Top, ArticleHtml, Comments, GiveStar
+      Top, ArticleHtml, Publishing, GiveStar,MessageDisplay
     },
+    mixins:[notificationMixin],
     data() {
       return {
         articleInfo: {},
@@ -57,12 +62,9 @@
     methods: {
       commentSubmit(name, message) {
         upLoadCommnet(this.id, name, message).then(res => {
-          this.Notification({
-            title: '发布成功',
-            message: '已成功发布一条评论',
-            type: 'success',
-            position: 'bottom-right'
-          })
+          this.success()
+        }).catch(err =>{
+          this.error()
         })
       }
     }

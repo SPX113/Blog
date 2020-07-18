@@ -34,24 +34,18 @@
 
 <script>
 
+  import {notificationMixin} from "common/mixin";
 
   export default {
-    name: "Comments",
+    name: "Publishing",
     data(){
       return{
         name : '',
         message : ''
       }
     },
+    mixins:[notificationMixin],
     methods:{
-      warning(){
-        this.Notification({
-          title: '警告',
-          message: '输入框不能为空',
-          type: 'warning',
-          position : 'bottom-right'
-        })
-      },
       btnClick(){
         if (this.name === ''){
           this.warning()

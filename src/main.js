@@ -21,7 +21,7 @@ Vue.directive('highlight',function (el) {
 //icon库导入
 import 'assets/css/icon/iconfont.css'
 
-import {Button,Row,Icon,Card,Tooltip,Carousel,CarouselItem,Image,Tag,Pagination,Backtop,Divider,Input,Notification} from 'element-ui';
+import {Button,Row,Icon,Card,Tooltip,Carousel,CarouselItem,Image,Tag,Pagination,Backtop,Divider,Input} from 'element-ui';
 
 
 Vue.use(Button);
@@ -37,8 +37,6 @@ Vue.use(Pagination)
 Vue.use(Backtop)
 Vue.use(Divider)
 Vue.use(Input)
-
-Vue.prototype.Notification = Notification
 
 
 
