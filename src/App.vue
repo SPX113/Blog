@@ -11,7 +11,7 @@
 </template>
 
 <script>
-  import NavBar from "components/content/NavBar";
+  import NavBar from "components/content/navBar/NavBar";
   import BackTop from "./components/common/backTop/BackTop";
 
 export default {

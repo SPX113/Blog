@@ -7,8 +7,16 @@
 </template>
 
 <script>
+  import {giveStar} from "network/detail";
+
   export default {
     name: "GiveStar",
+    props:{
+      id:{
+        type : Number,
+        default : 0
+      }
+    },
     data(){
       return{
         islike : false
@@ -16,7 +24,9 @@
     },
     methods:{
       starClick(){
-        this.islike = true
+        giveStar(this.id).then(res => {
+          this.islike = true
+        })
       }
     }
   }

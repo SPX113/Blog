@@ -16,12 +16,12 @@
         </el-input>
         <el-input
                 type="textarea"
-                placeholder="请输入评论"
-                v-model="comment"
+                placeholder="请输入内容"
+                v-model="message"
                 maxlength="100"
                 show-word-limit
-                name = "comment"
-                ref = "comment"
+                name = "message"
+                ref = "message"
         >
         </el-input>
         <div class="btncontain">
@@ -33,31 +33,17 @@
 </template>
 
 <script>
-  import {upLoadCommnet} from "network/detail";
+
 
   export default {
     name: "Comments",
-    props:{
-      id:{
-        type : Number,
-        default : 0
-      }
-    },
     data(){
       return{
         name : '',
-        comment : ''
+        message : ''
       }
     },
     methods:{
-      success() {
-        this.Notification({
-          title: '评论成功',
-          message: '已成功发布一条评论',
-          type: 'success',
-          position : 'bottom-right'
-        })
-      },
       warning(){
         this.Notification({
           title: '警告',
@@ -71,17 +57,14 @@
           this.warning()
           return this.$refs.name.focus()
         }
-        if(this.comment === ''){
+        if(this.message === ''){
           this.warning()
-          return this.$refs.comment.focus()
+          return this.$refs.message.focus()
         }
-        upLoadCommnet(this.id,this.name,this.comment).then(res => {
-          this.success()
-          //输入框重置
-          this.name = ''
-          this.comment = ''
-        })
-
+        this.$emit('btnClick',this.name,this.message)
+        //输入框重置
+        this.name = ''
+        this.message = ''
       }
     }
   }

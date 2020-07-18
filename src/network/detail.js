@@ -22,5 +22,13 @@ export function upLoadCommnet(id,name,comment) {
       id,name,comment
     }
   })
+}
 
+export function giveStar(id) {
+  return request({
+    url : '/giveStar',
+    params : {
+      id
+    }
+  })
 }
