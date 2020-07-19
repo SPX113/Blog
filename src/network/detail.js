@@ -32,3 +32,13 @@ export function giveStar(id) {
     }
   })
 }
+
+export function getComments(id) {
+  return  request({
+    url : '/comments',
+    params : {
+      id
+    }
+  })
+
+}

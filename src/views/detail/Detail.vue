@@ -3,9 +3,9 @@
     <top :articleInfo="articleInfo"/>
     <div class="content">
       <article-html :mdhtml = "mdhtml"/>
-      <give-star :id="id"/>
+      <give-star  :islike="islike" @giveStar="giveStar"/>
       <publishing @btnClick="commentSubmit"/>
-      <message-display/>
+      <message-display :message="comments"/>
     </div>
   </div>
 </template>
@@ -19,7 +19,7 @@
 
   import { notificationMixin } from "common/mixin";
 
-  import { getDetail , getArticle , upLoadCommnet} from 'network/detail.js'
+  import { getDetail , getArticle , upLoadCommnet , getComments , giveStar} from 'network/detail.js'
   import marked from 'marked'
   export default {
     name: "Detail",
@@ -32,26 +32,16 @@
         articleInfo: {},
         article: '',
         mdhtml: '',
-        id: 0
+        id: 0,
+        comments : [],
+        islike : false
       }
     },
     created() {
       this.id = parseInt(this.$route.params.id)
-      getDetail(this.id).then(res => {
-        this.articleInfo = res.data
+      this.getDetail(this.id)
+      this.getComments()
 
-//数据处理
-        //获取文章的文件名,获取文件信息
-        this.article = this.articleInfo.article
-        //标签从字符串转换为数组
-        this.articleInfo.tags = this.articleInfo.tags.split(',')
-        //时间处理
-        this.articleInfo.createtime = this.articleInfo.createtime.substr(0, 10)
-      }).then(res => {
-        getArticle(this.article).then(res => {
-          this.mdhtml = marked(res.data)
-        })
-      })
     },
     mounted() {
       //页面回顶
@@ -60,11 +50,42 @@
       })
     },
     methods: {
+      getDetail(id){
+        //根据id获取文章信息
+        getDetail(this.id).then(res => {
+          this.articleInfo = res.data
+
+
+//数据处理
+          //获取文章的文件名,获取文件信息
+          this.article = this.articleInfo.article
+          //标签从字符串转换为数组
+          this.articleInfo.tags = this.articleInfo.tags.split(',')
+          //时间处理
+          this.articleInfo.createtime = this.articleInfo.createtime.substr(0, 10)
+        }).then(res => {
+          //获取文章的内容
+          getArticle(this.article).then(res => {
+            this.mdhtml = marked(res.data)
+          })
+        })
+      },
       commentSubmit(name, message) {
         upLoadCommnet(this.id, name, message).then(res => {
           this.success()
+          this.getComments()
         }).catch(err =>{
           this.error()
+        })
+      },
+      getComments(){
+        getComments(this.id).then(res => {
+          this.comments = res.data
+        })
+      },
+      giveStar(){
+        giveStar(this.id).then(res => {
+          this.islike = true
         })
       }
     }

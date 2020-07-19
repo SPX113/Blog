@@ -7,7 +7,6 @@
 </template>
 
 <script>
-  import {giveStar} from "network/detail";
 
   export default {
     name: "GiveStar",
@@ -15,18 +14,24 @@
       id:{
         type : Number,
         default : 0
+      },
+      islike:{
+        type : Boolean,
+        default: false
       }
     },
     data(){
       return{
-        islike : false
+        time : true
       }
     },
     methods:{
-      starClick(){
-        giveStar(this.id).then(res => {
-          this.islike = true
-        })
+      starClick() {
+        if(this.time)
+        {
+          this.$emit('giveStar')
+          this.time = false
+        }
       }
     }
   }

@@ -1,16 +1,16 @@
 <template>
-  <div class="container">
-    <el-card :body-style="{ padding: '0px' }" shadow="never">
+  <div class="container" v-if="message.length !== 0">
+    <el-card :body-style="{ padding: '0px' }" shadow="never" v-for="(item,index) in message" :key="index">
       <div class="user">
-        <h3 class="name">adasd</h3>
-        <p>adasdasdasdasfafsasfasdfasfdsdfsdfsdfsdfsdfdsfsdfsdfsdfsdfsdfsda</p>
+        <h3 class="name">{{item.name}}</h3>
+        <p>{{item.comment}}</p>
       </div>
-      <div class="root">
+      <div class="root" v-if="item.author">
         <h3 class="creater">作者</h3>
-        <p>adasdasdasd💪</p>
+        <p>{{item.author}}</p>
       </div>
       <div class="time">
-        <span>2020-7-18 23:00</span>
+        <span>{{item.createtime |formateDate}}</span>
       </div>
     </el-card>
   </div>
@@ -18,7 +18,25 @@
 
 <script>
   export default {
-    name: "MessageDisplay"
+    name: "MessageDisplay",
+    props:{
+      message: {
+        type : Array,
+        default(){
+          return []
+        }
+      }
+    },
+    filters: {
+      formateDate(datetime) {
+        function addDateZero(num) {
+          return (num < 10 ? "0" + num : num);
+        }
+        let d = new Date(datetime);
+        let formatdatetime = d.getFullYear() + '-' + addDateZero(d.getMonth() + 1) + '-' + addDateZero(d.getDate()) + ' ' + addDateZero(d.getHours()) + ':' + addDateZero(d.getMinutes()) + ':' + addDateZero(d.getSeconds());
+        return formatdatetime;
+      }
+    }
   }
 </script>
 
