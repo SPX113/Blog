@@ -1,7 +1,7 @@
 <template>
   <div class="top">
     <div class="image">
-      <el-image :src="articleInfo.photo" fit="fill" height="380" ></el-image>
+      <el-image :src="articleInfo.photo" fit="fill" height="380" @error="reload"></el-image>
     </div>
     <div class="info">
       <h1>{{articleInfo.title}}</h1>
@@ -25,6 +25,11 @@
         default() {
           return {}
         }
+      }
+    },
+    methods:{
+      reload(){
+        this.articleInfo.photo = this.articleInfo.photo +'?'+new Date()
       }
     }
   }

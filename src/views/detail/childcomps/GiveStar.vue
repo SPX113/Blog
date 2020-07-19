@@ -20,17 +20,10 @@
         default: false
       }
     },
-    data(){
-      return{
-        time : true
-      }
-    },
     methods:{
       starClick() {
-        if(this.time)
-        {
+        if(!this.islike){
           this.$emit('giveStar')
-          this.time = false
         }
       }
     }

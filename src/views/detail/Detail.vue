@@ -4,9 +4,11 @@
     <div class="content">
       <article-html :mdhtml = "mdhtml"/>
       <give-star  :islike="islike" @giveStar="giveStar"/>
-      <publishing @btnClick="commentSubmit"/>
+      <publishing @btnClick="commentSubmit" ref="commentsP" />
       <message-display :message="comments"/>
     </div>
+    <suspend @starClick="giveStar" @toComments="toComments"
+             :islike="islike" :stars="articleInfo.stars" :comments="articleInfo.comments"/>
   </div>
 </template>
 
@@ -16,15 +18,18 @@
   import ArticleHtml from "./childcomps/ArticleHtml";
   import GiveStar from "./childcomps/GiveStar";
   import MessageDisplay from "components/content/messageDisplay/MessageDisplay";
+  import Suspend from "./childcomps/Suspend";
 
   import { notificationMixin } from "common/mixin";
 
   import { getDetail , getArticle , upLoadCommnet , getComments , giveStar} from 'network/detail.js'
+
   import marked from 'marked'
+
   export default {
     name: "Detail",
     components: {
-      Top, ArticleHtml, Publishing, GiveStar,MessageDisplay
+      Top, ArticleHtml, Publishing, GiveStar,MessageDisplay,Suspend
     },
     mixins:[notificationMixin],
     data() {
@@ -34,14 +39,13 @@
         mdhtml: '',
         id: 0,
         comments : [],
-        islike : false
+        islike : false,
       }
     },
     created() {
       this.id = parseInt(this.$route.params.id)
       this.getDetail(this.id)
       this.getComments()
-
     },
     mounted() {
       //页面回顶
@@ -50,7 +54,7 @@
       })
     },
     methods: {
-      getDetail(id){
+      getDetail(id) {
         //根据id获取文章信息
         getDetail(this.id).then(res => {
           this.articleInfo = res.data
@@ -74,19 +78,24 @@
         upLoadCommnet(this.id, name, message).then(res => {
           this.success()
           this.getComments()
-        }).catch(err =>{
+          this.articleInfo.comments ++
+        }).catch(err => {
           this.error()
         })
       },
-      getComments(){
+      getComments() {
         getComments(this.id).then(res => {
           this.comments = res.data
         })
       },
-      giveStar(){
+      giveStar() {
         giveStar(this.id).then(res => {
           this.islike = true
         })
+        this.articleInfo.stars++
+      },
+      toComments() {
+        document.querySelector("#app").scrollTop = this.$refs.commentsP.$el.offsetTop + 500
       }
     }
   }

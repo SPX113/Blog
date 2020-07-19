@@ -46,7 +46,6 @@
       //获取当前页数据
       getByPage(currentPage) {
         getArticleByPage(currentPage).then(res => {
-          console.log(res)
           this.totalpages = res.data.totalnum
           this.articleList = res.data.result
           for (let i of this.articleList) {
@@ -54,6 +53,9 @@
           }
         })
       },
+
+
+      //翻页
       prevpage(){
         this.currentPage --
         this.getByPage(this.currentPage)
@@ -67,11 +69,14 @@
         this.getByPage(this.currentPage)
       }
     },
+
+
     created()
     {
       this.getrecommend()
       this.getByPage(this.currentPage)
     },
+
     activated() {
       document.querySelector("#app").scrollTop = this.offset
     },
