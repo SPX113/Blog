@@ -20,5 +20,6 @@
   .about{
     display: flex;
     justify-content: center;
+    height: calc(100% - 160px);
   }
 </style>

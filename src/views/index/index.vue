@@ -94,5 +94,6 @@
 <style scoped>
   .el-pagination{
     text-align: center;
+    padding-bottom: 40px;
   }
 </style>
