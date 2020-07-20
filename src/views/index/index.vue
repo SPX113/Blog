@@ -1,7 +1,7 @@
 <template>
   <div class="index">
     <swiper :recArticle = "recArticle"/>
-    <article-list :articleList="articleList" />
+    <article-list :articleList="articleList" ref="list"/>
     <el-pagination
               background
               layout="prev, pager, next"
@@ -67,6 +67,10 @@
       selectPage(value){
         this.currentPage = value
         this.getByPage(this.currentPage)
+        this.$nextTick(()=>{
+          document.querySelector("#app").scrollTop = this.$refs.list.$el.offsetTop
+        })
+
       }
     },
 
@@ -75,6 +79,7 @@
     {
       this.getrecommend()
       this.getByPage(this.currentPage)
+
     },
 
     activated() {

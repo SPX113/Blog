@@ -42,7 +42,7 @@
 
 <style scoped>
   .container{
-    padding: 20px 5%;
+    padding: 20px 6%;
   }
   h3{
     padding-left: 10px;

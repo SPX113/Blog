@@ -4,7 +4,8 @@
     <div class="content">
       <article-html :mdhtml = "mdhtml"/>
       <give-star  :islike="islike" @giveStar="giveStar"/>
-      <publishing @btnClick="commentSubmit" ref="commentsP" />
+      <el-divider content-position="left"><i class="el-icon-chat-dot-round" style="font-size: 18px;font-weight: 700"> 评论区</i></el-divider>
+      <publishing @btnClick="commentSubmit" ref="commentsP" class="input" />
       <message-display :message="comments"/>
     </div>
     <suspend @starClick="giveStar" @toComments="toComments"
@@ -110,5 +111,8 @@
     position: relative;
     bottom: 70px;
     z-index: 100;
+  }
+  .input{
+    padding: 40px 20px 0;
   }
 </style>

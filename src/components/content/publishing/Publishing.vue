@@ -1,6 +1,5 @@
 <template>
   <div class="comments">
-    <el-divider content-position="left"><i class="el-icon-chat-dot-round" style="font-size: 18px;font-weight: 700"> 评论区</i></el-divider>
     <div class="display">
       <form action="" method="get" >
         <el-input
@@ -22,6 +21,7 @@
                 show-word-limit
                 name = "message"
                 ref = "message"
+                @keyup.enter="btnClick"
         >
         </el-input>
         <div class="btncontain">
@@ -65,14 +65,11 @@
 </script>
 
 <style scoped>
-  .comments{
-    padding: 40px 20px 0;
-  }
   .display{
-    padding: 20px 5%;
+    padding: 0 5%;
   }
   .el-input{
-    padding: 20px 0;
+    padding-bottom: 20px;
   }
   .btncontain{
     width: 100%;
