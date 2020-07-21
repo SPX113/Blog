@@ -11,8 +11,8 @@
     name: "NavBar",
     data(){
       return {
-        list: ['首页','标签','时间线','留言板','关于'],
-        path:['/index','/label','/timeline','/message','/about'],
+        list: ['首页','时间线','留言板','关于'],
+        path:['/index','/timeline','/message','/about'],
       }
     },
     methods:{

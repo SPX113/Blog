@@ -16,7 +16,7 @@
 
 <script>
   import Swiper from "./childComps/Swiper";
-  import ArticleList from "./childComps/ArticleList";
+  import ArticleList from "components/content/articleList/ArticleList";
 
   import {recommedArticle,getArticleByPage} from "../../network/home";
   export default {

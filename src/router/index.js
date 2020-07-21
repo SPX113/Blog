@@ -9,7 +9,6 @@ Vue.use(VueRouter)
 
 
 const Index = () => import('views/index')
-const Label = () => import('views/label/Label')
 const TimeLine = () => import('views/timeline/TimeLine')
 const Message = () => import('views/message/Message')
 const About = () => import('views/about/About')
@@ -25,13 +24,6 @@ const routes=[
     component: Index,
     meta:{
       title : '主页'
-    }
-  },
-  {
-    path: '/label',
-    component : Label,
-    meta:{
-      title : '标签'
     }
   },
   {

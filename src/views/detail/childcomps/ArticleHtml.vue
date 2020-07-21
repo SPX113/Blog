@@ -1,5 +1,8 @@
 <template>
-  <div v-html="mdhtml" class="markdown-body" v-highlight ></div>
+  <div>
+    <div v-html="mdhtml" class="markdown-body" v-highlight >
+    </div>
+  </div>
 </template>
 
 <script>

@@ -40,7 +40,9 @@
       },
       toComments(){
         this.$emit('toComments')
-      }
+      },
+
+
     }
   }
 </script>

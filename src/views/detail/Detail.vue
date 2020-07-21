@@ -2,7 +2,7 @@
   <div>
     <top :articleInfo="articleInfo"/>
     <div class="content">
-      <article-html :mdhtml = "mdhtml"/>
+      <article-html :mdhtml = "mdhtml" />
       <give-star  :islike="islike" @giveStar="giveStar"/>
       <el-divider content-position="left"><i class="el-icon-chat-dot-round" style="font-size: 18px;font-weight: 700"> 评论区</i></el-divider>
       <publishing @btnClick="commentSubmit" ref="commentsP" class="input" />
@@ -40,26 +40,28 @@
         mdhtml: '',
         id: 0,
         comments : [],
-        islike : false,
+        islike : false
       }
     },
     created() {
       this.id = parseInt(this.$route.params.id)
       this.getDetail(this.id)
       this.getComments()
+
     },
     mounted() {
       //页面回顶
       this.$nextTick(() => {
         document.querySelector("#app").scrollTop = 0
       })
+
+
     },
     methods: {
       getDetail(id) {
         //根据id获取文章信息
         getDetail(this.id).then(res => {
           this.articleInfo = res.data
-
 
 //数据处理
           //获取文章的文件名,获取文件信息
@@ -69,12 +71,16 @@
           //时间处理
           this.articleInfo.createtime = this.articleInfo.createtime.substr(0, 10)
         }).then(res => {
+
           //获取文章的内容
           getArticle(this.article).then(res => {
             this.mdhtml = marked(res.data)
           })
         })
       },
+
+
+
       commentSubmit(name, message) {
         upLoadCommnet(this.id, name, message).then(res => {
           this.success()
@@ -97,7 +103,11 @@
       },
       toComments() {
         document.querySelector("#app").scrollTop = this.$refs.commentsP.$el.offsetTop + 500
-      }
+      },
+
+
+
+
     }
   }
 </script>
