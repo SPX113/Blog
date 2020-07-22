@@ -9,7 +9,7 @@
       <message-display :message="comments"/>
     </div>
     <suspend @starClick="giveStar" @toComments="toComments"
-             :islike="islike" :stars="articleInfo.stars" :comments="articleInfo.comments"/>
+             :islike="islike" :stars="articleInfo.stars" :comments="articleInfo.comments" :menu="menu"/>
   </div>
 </template>
 
@@ -40,7 +40,15 @@
         mdhtml: '',
         id: 0,
         comments : [],
-        islike : false
+        islike : false,
+        menu : []
+      }
+    },
+    watch:{
+      mdhtml:{
+        handler(){
+          this.getMenu()
+        }
       }
     },
     created() {
@@ -54,6 +62,7 @@
       this.$nextTick(() => {
         document.querySelector("#app").scrollTop = 0
       })
+
 
 
     },
@@ -104,6 +113,22 @@
       toComments() {
         document.querySelector("#app").scrollTop = this.$refs.commentsP.$el.offsetTop + 500
       },
+
+
+      //获取目录信息
+      getMenu(){
+        this.$nextTick(() => {
+          document.querySelector(".markdown-body").querySelectorAll("h1,h2,h3,h4,h5,h6").forEach(item =>{
+            let obj = {
+              id : item.id,
+              level : parseInt(item.tagName.substr(1, 1)),
+              body : item.innerHTML
+            }
+            this.menu.push(obj)
+          })
+        })
+
+      }
 
 
 
