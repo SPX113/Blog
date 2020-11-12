@@ -18,7 +18,7 @@
 </script>
 
 <style scoped>
-  @import "~github-markdown-css/github-markdown.css";
+  @import "~assets/css/github-markdown.css";
   .markdown-body{
     padding: 40px 5%;
   }
