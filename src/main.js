@@ -18,8 +18,8 @@ Vue.directive('highlight',function (el) {
   })
 })
 
-//icon库导入
-import 'assets/css/icon/iconfont.css'
+
+
 
 import {Button,Row,Icon,Card,Tooltip,Carousel,CarouselItem,Image,Tag,Pagination,
   Backtop,Divider,Input,Timeline,TimelineItem,Popover} from 'element-ui';

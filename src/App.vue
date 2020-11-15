@@ -7,17 +7,19 @@
       </keep-alive>
     </transition>
     <back-top/>
+    <music-box/>
   </div>
 </template>
 
 <script>
   import NavBar from "components/content/navBar/NavBar";
   import BackTop from "./components/common/backTop/BackTop";
+  import MusicBox from "./components/common/musicBox/MusicBox"
 
 export default {
   name: 'App',
   components: {
-    NavBar,BackTop
+    NavBar,BackTop,MusicBox
   }
 }
 </script>
