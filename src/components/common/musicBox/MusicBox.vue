@@ -91,9 +91,11 @@
             }
         },
         methods:{
+            //歌单显示
             show(){
               this.isShow = ! this.isShow
             },
+            //歌单选择
             change(index){
                 this.currentIndex = index
                 this.isShow = false
@@ -145,7 +147,7 @@
                 //获取事件相对于元素的x轴
                 let clickX = event.offsetX
                 this.$refs.music.currentTime = (clickX/this.processWidth)*this.duration
-                if(this.isPlay){
+                if(!this.isPlay){
                     this.play()
                 }
             },
