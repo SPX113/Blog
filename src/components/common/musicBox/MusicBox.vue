@@ -1,33 +1,45 @@
 <template>
-    <div class="container">
-        <audio src="~assets/一路向北.mp3" ref="music"
-               @canplay="getDuration"
-               @timeupdate="getCurrentTime"
-               @ended="isEnded"
-        >
-
-        </audio>
-        <div class="control">
-            <i class="iconfont icon-SanMiAppglyphico"></i>
-            <i :class="stateClass" @click="playClick"></i>
-            <i class="iconfont icon-SanMiAppglyphico1"></i>
-        </div>
-        <div class="photo"></div>
-        <div class="detail">
-            <div class="top">
-                <p>一路向北-周杰伦</p>
+    <div class="music-bar">
+        <div class="container">
+            <audio :src="song[currentIndex].url" ref="music"
+                   @canplay="getDuration"
+                   @timeupdate="getCurrentTime"
+                   @ended="isEnded"
+            >
+            </audio>
+            <div class="control">
+                <i class="iconfont icon-SanMiAppglyphico" @click="preMusic">
+                </i>
+                <i :class="stateClass" @click="playClick"></i>
+                <i class="iconfont icon-SanMiAppglyphico1" @click="nextMusic"></i>
             </div>
-            <div class="bottom">
-                <div class="Process">
-                    <div class="ProcessAll" @click="changeProcess" :style="'width:'+processWidth+'px'"></div>
-                    <div class="ProcessNow" ref="now" @click="changeProcess"></div>
-                    <div class="SongTime">
-                        <div class="time">
-                            {{currentTime | mmss }}/{{duration | mmss}}
+            <div class="photo">
+                <img src="~assets/img/head.jpg" width="60px" height="60px">
+            </div>
+            <div class="detail">
+                <div class="top">
+                    <p>{{song[currentIndex].title}}</p>
+                </div>
+                <div class="bottom">
+                    <div class="Process">
+                        <div class="ProcessAll" @click="changeProcess" :style="'width:'+processWidth+'px'"></div>
+                        <div class="ProcessNow" ref="now" @click="changeProcess"></div>
+                        <div class="SongTime">
+                            <div class="time">
+                                {{currentTime | mmss }}/{{duration | mmss}}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="menu">
+                <i class="iconfont icon-SanMiAppglyphico4" @click="show"></i>
+            </div>
+        </div>
+        <div class="list" v-show="isShow">
+            <p v-for="(item,index) in song" :key="index" @click="change(index)">
+                {{item.title}}
+            </p>
         </div>
     </div>
 </template>
@@ -37,10 +49,21 @@
         name: "MusicBox",
         data(){
             return{
-                isPlay : true,
+                isPlay : false,
                 duration : 0,
                 currentTime: 0,
-                processWidth : 260
+                processWidth : 260,
+                currentIndex:0,
+                isShow: false,
+                song:[
+                    {title:'一丝不挂-陈奕迅',url:require('@/assets/一丝不挂.mp3')},
+                    {title:'一路向北-周杰伦',url:require('@/assets/一路向北.mp3')},
+                    {title:'晴天-周杰伦',url:require('@/assets/晴天.mp3')},
+                    {title: '麻雀-李荣浩',url:require('@/assets/麻雀.mp3')},
+                    {title: '体面-于文文',url:require('@/assets/体面.mp3')},
+                    {title: '像鱼-王贰浪',url:require('@/assets/像鱼.mp3')},
+                    {title: '飞鸟和蝉-任然',url: require('@/assets/飞鸟和蝉.mp3')}
+                ]
             }
         },
         watch:{
@@ -61,22 +84,40 @@
             //播放暂停按钮切换
             stateClass(){
                 if(this.isPlay){
-                    return "iconfont icon-yinle-bofang"
-                }else{
                     return "iconfont icon-tingzhi"
+                }else{
+                    return "iconfont icon-yinle-bofang"
                 }
             }
         },
-        mounted() {
-        },
         methods:{
+            show(){
+              this.isShow = ! this.isShow
+            },
+            change(index){
+                this.currentIndex = index
+                this.isShow = false
+                this.$refs.music.load()
+                setTimeout(()=>{
+                    this.play()
+                },500)
+            },
+            //音乐播放
+            play(){
+                this.isPlay = true
+                this.$refs.music.play()
+            },
+            //音乐暂停
+            pause(){
+                this.isPlay = false
+                this.$refs.music.pause()
+            },
             //播放暂停按钮点击事件
             playClick(){
-                this.isPlay=!this.isPlay
-                if (this.isPlay){
-                    this.$refs.music.pause()
+                if (!this.isPlay){
+                    this.play()
                 }else{
-                    this.$refs.music.play()
+                    this.pause()
                 }
             },
             //获取音乐文件总时长
@@ -89,7 +130,7 @@
             },
             //音乐结束钩子函数触发事件
             isEnded(){
-                this.isPlay = !this.isPlay
+                this.nextMusic()
             },
             //播放时运行
             Playing(){
@@ -105,10 +146,33 @@
                 let clickX = event.offsetX
                 this.$refs.music.currentTime = (clickX/this.processWidth)*this.duration
                 if(this.isPlay){
-                    this.$refs.music.play()
-                    this.isPlay = !this.isPlay
+                    this.play()
                 }
-            }
+            },
+            //上一首
+            preMusic(){
+                if(this.currentIndex == 0){
+                    this.currentIndex = this.song.length-1
+                }else{
+                    this.currentIndex--
+                }
+                this.$refs.music.load()
+                setTimeout(()=>{
+                    this.play()
+                },500)
+            },
+            //下一首
+            nextMusic(){
+                if(this.currentIndex == this.song.length-1){
+                    this.currentIndex = 0
+                }else{
+                    this.currentIndex++
+                }
+                this.$refs.music.load()
+                setTimeout(()=>{
+                    this.play()
+                },500)
+            },
 
         }
     }
@@ -120,27 +184,33 @@
         position: fixed;
         bottom: 0;
         height: 70px;
-        width: 600px;
+        width: 670px;
         z-index: 100;
         background-color: rgba(250,250,250,.9);
+        border-bottom-right-radius: 8px;
+        border-top-right-radius:8px;
     }
     .control{
         line-height: 70px;
     }
     .photo{
         width: 70px;
-        background-color: blue;
+    }
+    .photo img{
+        position: relative;
+        top:5px;
+        left:10px;
     }
     .detail{
-        flex: 1;
+        width: 377px;
     }
-    .control i{
+    .container i{
         font-size: 35px;
         color: rgb(39,192,135);
         cursor: pointer;
         padding:0 8px;
     }
-    .control i:hover{
+    .container i:hover{
         color: rgb(60,210,140);
     }
     .top{
@@ -183,5 +253,32 @@
         padding-right: 10px;
         position: relative;
         top: -10px;
+    }
+    .menu{
+        flex: 1;
+        text-align: center;
+        line-height: 70px;
+    }
+    .list{
+        position: fixed;
+        bottom: 0;
+        left: 670px;
+        z-index: 100;
+        max-height: 500px;
+        width: 300px;
+        background-color: rgba(39,192,135,.9);
+        border-radius: 8px;
+        padding:10px 0;
+    }
+    .list p{
+        font-weight: bolder;
+        text-align: center;
+        color: white;
+        cursor: pointer;
+        padding: 2px 0;
+    }
+    .list p:hover{
+        color: rgba(39,192,135,.9);
+        background-color: #fff;
     }
 </style>
