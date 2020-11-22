@@ -8,6 +8,7 @@
     </transition>
     <back-top/>
     <music-box/>
+    <footer-bar/>
   </div>
 </template>
 
@@ -15,11 +16,12 @@
   import NavBar from "components/content/navBar/NavBar";
   import BackTop from "./components/common/backTop/BackTop";
   import MusicBox from "./components/common/musicBox/MusicBox"
+  import FooterBar from "./components/content/footerBar/FooterBar";
 
 export default {
   name: 'App',
   components: {
-    NavBar,BackTop,MusicBox
+    NavBar,BackTop,MusicBox,FooterBar
   }
 }
 </script>
