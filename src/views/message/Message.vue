@@ -50,6 +50,8 @@
         uploadMessage(name, message).then(res => {
           this.success()
           this.getMessage(this.currentPage)
+        },error => {
+          this.error()
         })
       },
 
@@ -78,6 +80,7 @@
 <style scoped>
   .message{
     width: 75%;
+    min-height: calc(100% - 61px);
     margin: 40px auto;
     border-radius: 8px;
     position: relative;

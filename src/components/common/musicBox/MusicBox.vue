@@ -93,7 +93,7 @@
         methods:{
             //歌单显示
             show(){
-              this.isShow = ! this.isShow
+                this.isShow = ! this.isShow;
             },
             //歌单选择
             change(index){

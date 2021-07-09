@@ -1,6 +1,6 @@
 <template>
   <div class="swiper">
-    <el-carousel height="380px" indicator-position="none">
+    <el-carousel height="380px" indicator-position="none" :interval=5000>
       <el-carousel-item v-for="(item,index) in recArticle" :key="index" @click.native="itemClick(item.id)">
         <div class="content">
           <el-image :src="item.photo" fit="fill" class="image"></el-image>

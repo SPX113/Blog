@@ -5,7 +5,7 @@
         <el-input
                 type="text"
                 placeholder="请输入昵称（必填） "
-                v-model="name"
+                v-model.lazy.trim="name"
                 maxlength="10"
                 show-word-limit
                 style="width: 30%"
@@ -16,7 +16,7 @@
         <el-input
                 type="textarea"
                 placeholder="请输入内容"
-                v-model="message"
+                v-model.lazy.trim="message"
                 maxlength="100"
                 show-word-limit
                 name = "message"

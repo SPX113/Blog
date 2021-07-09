@@ -12,7 +12,7 @@
           <ul>
             <li><a href="https://github.com/SPX113"><i class="iconfont icon-github"></i></a></li>
             <li>
-              <el-tooltip class="item" effect="dark" content="SPX_11-13" placement="bottom">
+              <el-tooltip class="item" effect="dark" content="SPX-YYDS" placement="bottom">
                 <i class="iconfont icon-weixin"></i>
               </el-tooltip>
             </li>

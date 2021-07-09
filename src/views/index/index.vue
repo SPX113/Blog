@@ -96,4 +96,7 @@
     text-align: center;
     padding-bottom: 40px;
   }
+  .index{
+    min-height: calc(100% - 160px);
+  }
 </style>

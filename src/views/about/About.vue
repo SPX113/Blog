@@ -1,7 +1,7 @@
 <template>
   <div class="about">
-    <left/>
-    <Right/>
+      <left/>
+      <Right/>
   </div>
 </template>
 
@@ -20,6 +20,9 @@
   .about{
     display: flex;
     justify-content: center;
-    height: calc(100% - 160px);
+    align-items: center;
+    position: relative;
+    top:-61px;
+    height: calc(100% - 61px);
   }
 </style>

@@ -22,7 +22,7 @@ Vue.directive('highlight',function (el) {
 
 
 import {Button,Row,Icon,Card,Tooltip,Carousel,CarouselItem,Image,Tag,Pagination,
-  Backtop,Divider,Input,Timeline,TimelineItem,Popover} from 'element-ui';
+  Backtop,Divider,Input,Timeline,TimelineItem,Popover,Menu,MenuItem} from 'element-ui';
 
 
 Vue.use(Button);
@@ -41,6 +41,8 @@ Vue.use(Input)
 Vue.use(Timeline)
 Vue.use(TimelineItem)
 Vue.use(Popover)
+Vue.use(Menu)
+Vue.use(MenuItem)
 
 
 

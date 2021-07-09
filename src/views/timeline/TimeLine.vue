@@ -32,7 +32,9 @@
 <style scoped>
   .contain{
     width: 70%;
+    min-height: calc(100% - 61px);
     margin-left: 170px;
+    margin-top: 40px;
   }
   h3{
     margin-bottom: 10px;

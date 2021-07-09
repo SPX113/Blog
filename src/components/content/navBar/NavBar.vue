@@ -1,64 +1,45 @@
 <template>
-  <div class="nav-bar">
-      <ul class="nav">
-        <li :class="{active : currentIndex === index}" v-for="(item,index) in list" :key="index" @click="select(index)">{{item}}</li>
-      </ul>
-  </div>
+    <div class="nav">
+        <el-menu :default-active="activeIndex" class="d-flex"
+                 mode="horizontal" :router="true" type="flex">
+            <el-menu-item class="mr-auto">SPX</el-menu-item>
+            <el-menu-item index="/index" >首页</el-menu-item>
+            <el-menu-item index="/timeline">时间线</el-menu-item>
+            <el-menu-item index="/message">留言板</el-menu-item>
+            <el-menu-item index="/about">关于</el-menu-item>
+        </el-menu>
+    </div>
 </template>
 
 <script>
-  export default {
-    name: "NavBar",
-    data(){
-      return {
-        list: ['首页','时间线','留言板','关于'],
-        path:['/index','/timeline','/message','/about'],
-      }
-    },
-    methods:{
-      select(index){
-        this.$router.push(this.path[index])
-      }
-    },
-    computed:{
-      currentIndex(){
-        for(let i=0;i < this.path.length;i++)
-        {
-          if(this.$route.path.indexOf(this.path[i]) !== -1){
-            return i
-          }
+    export default {
+        data() {
+            return {
+                activeIndex: '/index'
+            };
+        },
+        methods: {
         }
-      }
     }
-  }
 </script>
 
 <style scoped>
-  .nav-bar {
-    height: 160px;
-    padding: 0 170px;
-    align-items: center;
-    display: flex;
-  }
-  .nav{
-    font-size: 18px;
-    display: block;
-    list-style-type: disc;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    padding-inline-start: 40px;
-  }
-  .nav li{
-    float: left;
-    list-style: none;
-    font-weight: 700;
-    margin-right: 18px;
-    cursor: pointer;
-  }
-  .active{
-    border-bottom: rgba(164,182,223) solid 2px;
-    padding-bottom: 5px;
-  }
+    .nav{
+        position: sticky;
+        top: 0px;
+        z-index: 10001;
+        height:61px;
+    }
+    .el-menu-item{
+        font-size: 1.1rem;
+    }
+    .d-flex{
+        display: flex!important;
+    }
+    .mr-auto{
+        margin-right: auto!important;
+    }
+    .align-items-center{
+        align-items: center!important;
+    }
 </style>

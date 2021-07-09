@@ -10,7 +10,7 @@
                                 </div>
                                 <p>因为你不会，所以你才会。</p>
                                 <div class="button">
-                                    <el-button type="text" style="font-size: 18px">About me</el-button>
+                                    <el-button type="text" style="font-size: 18px" @click="tiaozhuan">About me</el-button>
                                 </div>
                             </div>
                         </div>
@@ -18,11 +18,11 @@
                             <div class="single-widget">
                                 <h2>相关链接</h2>
                                 <ul class="social-icon">
-                                    <li class="active"><a href="#"><i class="el-icon-s-order"></i>博文</a></li>
-                                    <li class="active"><a href="#"><i class="el-icon-s-comment"></i>留言</a></li>
-                                    <li class="active"><a href="#"><i class="el-icon-s-cooperation"></i>资源</a></li>
-                                    <li class="active"><a href="#"><i class="el-icon-s-flag"></i>日记</a></li>
-                                    <li class="active"><a href="#"><i class="el-icon-s-promotion"></i>归档</a></li>
+                                    <li class="active"><a href="javascript:void(0)"><i class="el-icon-s-order"></i>博文</a></li>
+                                    <li class="active"><a href="javascript:void(0)"><i class="el-icon-s-comment"></i>留言</a></li>
+                                    <li class="active"><a href="javascript:void(0)"><i class="el-icon-s-cooperation"></i>资源</a></li>
+                                    <li class="active"><a href="javascript:void(0)"><i class="el-icon-s-flag"></i>日记</a></li>
+                                    <li class="active"><a href="javascript:void(0)"><i class="el-icon-s-promotion"></i>归档</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -47,6 +47,11 @@
 <script>
     export default {
         name: "FooterBar",
+        methods:{
+             tiaozhuan() {
+                this.$router.push('/about');
+            }
+        }
     }
 </script>
 
