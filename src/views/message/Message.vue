@@ -83,9 +83,6 @@
     min-height: calc(100% - 61px);
     margin: 40px auto;
     border-radius: 8px;
-    position: relative;
-    bottom: 70px;
-    z-index: 100;
   }
   .el-divider__text{
     background-color: rgb(238,237,237);
