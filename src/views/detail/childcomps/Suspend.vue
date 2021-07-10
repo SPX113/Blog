@@ -74,7 +74,7 @@
 
 
       jump(idname){
-        document.querySelector('#'+idname).scrollIntoView(true);
+        document.querySelector('#'+idname).scrollIntoView({behavior: "smooth",block:"center"});
       }
 
 

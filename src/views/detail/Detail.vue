@@ -111,7 +111,7 @@
         this.articleInfo.stars++
       },
       toComments() {
-        document.querySelector("#app").scrollTop = this.$refs.commentsP.$el.offsetTop + 500
+        document.querySelector("#app").scrollTop = this.$refs.commentsP.$el.offsetTop + 240
       },
 
 
