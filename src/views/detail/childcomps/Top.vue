@@ -50,6 +50,9 @@
     width: 60%;
     color: #fff;
   }
+  .image{
+    width: 100%;
+  }
   .info h1{
     font-size: 35px;
     margin-bottom: 25px;
