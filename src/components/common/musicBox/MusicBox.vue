@@ -1,6 +1,6 @@
 <template>
     <div class="music-bar">
-        <div class="container">
+        <div class="container" :class="{'isHidden':isHidden}">
             <audio :src="song[currentIndex].url" ref="music"
                    @canplay="getDuration"
                    @timeupdate="getCurrentTime"
@@ -35,6 +35,10 @@
             <div class="menu">
                 <i class="iconfont icon-SanMiAppglyphico4" @click="show"></i>
             </div>
+            <div class="zhangShi">
+                <i v-show="!isHidden" class="iconfont icon-shousuo"  style="font-size: 25px;" @click="changeH()"></i>
+                <i v-show="isHidden" class="iconfont icon-yinyue"  style="font-size: 25px;font-weight: bolder;" @click="changeH()"></i>
+            </div>
         </div>
         <div class="list" v-show="isShow">
             <p v-for="(item,index) in song" :key="index" @click="change(index)">
@@ -55,6 +59,7 @@
                 processWidth : 260,
                 currentIndex:0,
                 isShow: false,
+                isHidden: true,
                 song:[
                     {title:'一丝不挂-陈奕迅',url:require('@/assets/一丝不挂.mp3')},
                     {title:'一路向北-周杰伦',url:require('@/assets/一路向北.mp3')},
@@ -153,7 +158,7 @@
             },
             //上一首
             preMusic(){
-                if(this.currentIndex == 0){
+                if(this.currentIndex === 0){
                     this.currentIndex = this.song.length-1
                 }else{
                     this.currentIndex--
@@ -165,7 +170,7 @@
             },
             //下一首
             nextMusic(){
-                if(this.currentIndex == this.song.length-1){
+                if(this.currentIndex === this.song.length-1){
                     this.currentIndex = 0
                 }else{
                     this.currentIndex++
@@ -175,6 +180,10 @@
                     this.play()
                 },500)
             },
+        //    音乐盒隐藏和展示
+            changeH(){
+                this.isHidden = !this.isHidden
+            }
 
         }
     }
@@ -186,7 +195,7 @@
         position: fixed;
         bottom: 0;
         height: 70px;
-        width: 670px;
+        width: 711px;
         z-index: 100;
         background-color: rgba(250,250,250,.9);
         border-bottom-right-radius: 8px;
@@ -282,5 +291,11 @@
     .list p:hover{
         color: rgba(39,192,135,.9);
         background-color: #fff;
+    }
+    .zhangShi{
+        line-height: 70px;
+    }
+    .isHidden{
+        transform: translateX(-670px);
     }
 </style>

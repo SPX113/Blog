@@ -15,7 +15,7 @@
       }
     },
     mounted(){
-        setTimeout(function () {
+      setTimeout(function () {
             let codeList = document.getElementsByTagName('pre')
             for (let i = 0; i < codeList.length;i++){
                 let targetCode = codeList[i]
@@ -40,13 +40,6 @@
                 targetCode.insertBefore(copy,targetCode.firstChild)
             }
         },300)
-
-
-
-
-
-
-
     }
   }
 </script>

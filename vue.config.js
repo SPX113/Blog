@@ -10,5 +10,5 @@ module.exports = {
       }
     }
   },
-  transpileDependencies:["highlight.js"]
+  transpileDependencies:["highlight.js","element-ui"]
 }

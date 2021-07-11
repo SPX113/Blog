@@ -52,10 +52,10 @@
       }
     },
     created() {
+      //获取文章信息
       this.id = parseInt(this.$route.params.id)
       this.getDetail(this.id)
       this.getComments()
-
     },
     mounted() {
       //页面回顶
@@ -89,7 +89,7 @@
       },
 
 
-
+      //评论
       commentSubmit(name, message) {
         upLoadCommnet(this.id, name, message).then(res => {
           this.success()
@@ -99,17 +99,20 @@
           this.error()
         })
       },
+      //获取评论
       getComments() {
         getComments(this.id).then(res => {
           this.comments = res.data
         })
       },
+      //给星星
       giveStar() {
         giveStar(this.id).then(res => {
           this.islike = true
         })
         this.articleInfo.stars++
       },
+      //跳转到评论区
       toComments() {
         document.querySelector("#app").scrollTop = this.$refs.commentsP.$el.offsetTop + 240
       },
@@ -127,9 +130,7 @@
             this.menu.push(obj)
           })
         })
-
       }
-
 
 
 
