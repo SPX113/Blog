@@ -22,8 +22,8 @@ Vue.directive('highlight',function (el) {
 
 
 
-import {Button,Row,Icon,Card,Tooltip,Carousel,CarouselItem,Image,Tag,Pagination,
-  Backtop,Divider,Input,Timeline,TimelineItem,Popover,Menu,MenuItem} from 'element-ui';
+import {Button,Row,Icon,Card,Tooltip,Carousel,CarouselItem,Image,Tag,Pagination,Upload,
+  Backtop,Divider,Input,Timeline,TimelineItem,Popover,Menu,MenuItem,Form,FormItem,Switch} from 'element-ui';
 
 
 Vue.use(Button);
@@ -44,6 +44,10 @@ Vue.use(TimelineItem)
 Vue.use(Popover)
 Vue.use(Menu)
 Vue.use(MenuItem)
+Vue.use(Form)
+Vue.use(FormItem)
+Vue.use(Switch)
+Vue.use(Upload)
 
 
 

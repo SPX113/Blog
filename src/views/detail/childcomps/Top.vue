@@ -41,6 +41,7 @@
   }
   .el-image{
     height: 380px;
+    width: 100%;
   }
   .info{
     position: absolute;
@@ -49,9 +50,6 @@
     left: 20%;
     width: 60%;
     color: #fff;
-  }
-  .image{
-    width: 100%;
   }
   .info h1{
     font-size: 35px;

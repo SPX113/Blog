@@ -13,6 +13,7 @@ const TimeLine = () => import('views/timeline/TimeLine')
 const Message = () => import('views/message/Message')
 const About = () => import('views/about/About')
 const Detail = () => import('views/detail/Detail')
+const Commit = () => import('views/commit/Commit')
 
 const routes=[
   {
@@ -53,8 +54,14 @@ const routes=[
     meta: {
       title: '文章'
     }
+  },
+  {
+    path: '/commit',
+    component: Commit,
+    meta: {
+      title: '上传博客'
+    }
   }
-
 ]
 
 const router = new VueRouter({
