@@ -17,7 +17,7 @@
         </div>
       </div>
       <div class="image">
-        <el-image :src="item.photo" fit="fill" class="photo" style="height: 250px;border-radius: 8px" lazy></el-image>
+        <el-image :src="item.photo" fit="fill" class="photo" style="height: 250px;border-radius: 8px;" lazy/>
       </div>
     </div>
   </div>
@@ -85,8 +85,12 @@
   .list-item:hover{
     box-shadow: 0 0 15px rgb(150,150,150);
   }
+  .image{
+    width: 100%;
+  }
   .photo{
     transition: all .3s linear;
+    width: 100%;
   }
   .list-item:hover  .photo{
     transform:scale(1.04);

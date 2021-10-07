@@ -25,3 +25,7 @@ html,body,#app{
         border-radius: 3px;
     }
 }
+
+.el-image{
+    width: 100%;
+}
