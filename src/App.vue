@@ -13,7 +13,7 @@
 </template>
 
 <script>
-  import NavBar from "components/content/navBar/NavBar";
+  import NavBar from "./components/content/navBar/NavBar";
   import BackTop from "./components/common/backTop/BackTop";
   import MusicBox from "./components/common/musicBox/MusicBox"
   import FooterBar from "./components/content/footerBar/FooterBar";
